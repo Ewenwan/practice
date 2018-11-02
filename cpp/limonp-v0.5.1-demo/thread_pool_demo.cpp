@@ -29,7 +29,7 @@ void DemoClassFunction()
 {
   Foo foo;
   cout << foo.chars << endl;// 打印字符串
-  limonp::ThreadPool thread_pool(THREAD_NUM);// 初始化一个线程池
+  limonp::ThreadPool thread_pool(THREAD_NUM);// 初始化一个线程池，使用队列实现
   thread_pool.Start();// 启动线程池
   for (size_t i = 0; i < 20; i++) // 循环20次
   {
