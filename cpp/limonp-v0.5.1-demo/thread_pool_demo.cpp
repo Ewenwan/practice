@@ -41,6 +41,31 @@ void DemoClassFunction()
     // 第三个是 int类型的函数参数， 它们都是值传递，不支持引用传递
     // 使用 NewClosure（闭包）绑定 foo 类对象 和 其成员函数 Append 和其函数参数
     // 构造一个闭包扔进线程池中运行
+/*
+// 上述 NewClosure 函数原型
+// https://github.com/Ewenwan/limonp/blob/master/include/limonp/Closure.hpp
+template <class Obj, class Funct, class Arg1> // 模板
+class ObjClosure1: public ClosureInterface {
+ public:
+  ObjClosure1(Obj* p, Funct fun, Arg1 arg1) {
+   p_ = p;       // 类对象指针     相当于this指针  =========这里可以借鉴!!!!!!!!!!!!!!!!!!!!!!!
+   fun_ = fun;   // 成员函数指针
+   arg1_ = arg1; // 函数参数
+  }
+  virtual ~ObjClosure1() {
+  }
+  virtual void Run() {
+    (p_->*fun_)(arg1_);// 类对象调用成员函数 注意这里函数是指针，需要先解引用得到函数，再调用
+  }
+ private:
+  Obj* p_;
+  Funct fun_;
+  Arg1 arg1_;
+}; 
+
+*/
+   
+   
   }
   thread_pool.Stop();// 等待所有线程工作都完成(指NewClosure生成的闭包函数 都完成)，然后停止所有线程
   cout << foo.chars << endl;
